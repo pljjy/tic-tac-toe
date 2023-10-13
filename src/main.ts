@@ -1,5 +1,7 @@
 import $ from 'jquery'
 
+// TODO: add ai
+
 $('.win-screen').hide();
 type signs = 'x' | 'o';
 var currentPlayer: signs = 'x';

@@ -130,3 +130,40 @@ button{
 .mid-mid{
   border: var(--border-size) solid var(--border-color);
 }
+
+
+
+/* footer */
+/* TODO: convert to a string */
+.footer{
+  background-color: #e2e8f0;
+  position: fixed;
+  bottom: 15px;
+  border: 1px black solid;
+  min-height: 25px;
+  min-width: 140px;
+  max-width: 25%;
+  margin-bottom: 15px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 5px;
+}
+
+a.footer-img-link-pfp{
+  height: 25px;
+}
+
+img[src="https://avatars.githubusercontent.com/u/110295543"]{
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform .7s ease-in-out;
+}
+
+img[src="https://avatars.githubusercontent.com/u/110295543"]:hover{
+  transform: rotate(360deg);
+}
