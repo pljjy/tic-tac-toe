@@ -1,5 +1,5 @@
 # Typescript Jquery tic-tac-toe game
-## ** Still in progress **
+## Still in progress
 
 npm run start to start live server for src/main.ts and index.html
 
