@@ -1,13 +1,14 @@
 import $ from 'jquery'
-// TODO: add ai
 
 $('.win-screen').hide();
 type signs = 'x' | 'o';
 var currentPlayer: signs = 'x';
+var endScreenEnabled: boolean = false;
 const fadeTime = 400;
 
 
 $('.ok').on('click', function() {
+  endScreenEnabled = false;
   $(this).prop('disabled', true);
   resetFields();
   $('.win-screen').fadeOut(fadeTime);
@@ -15,18 +16,19 @@ $('.ok').on('click', function() {
 });
 
 $('.reset').on('click', resetFields)
-
+console.log('hii')
 
 $('.square').on('click', function() {
+  if (endScreenEnabled) return;
   if ($(this).children().length > 0) return;
   $(this).html(`<span class='${currentPlayer}-field'>${currentPlayer}</span>`);
   checkWinner();
-  if(currentPlayer === 'x') currentPlayer = 'o' as signs;
+  if (currentPlayer === 'x') currentPlayer = 'o' as signs;
   else currentPlayer = 'x' as signs;
   $('.turn > span').text(currentPlayer as string);
 });
 
-function getFields(){
+function getFields() {
   return [
     [$('.board div:nth-child(1) > span'), $('.board div:nth-child(2) > span'), $('.board div:nth-child(3) > span')],
     [$('.board div:nth-child(4) > span'), $('.board div:nth-child(5) > span'), $('.board div:nth-child(6) > span')],
@@ -63,15 +65,16 @@ function checkWinner(): void {
     alertWinner(fields[1][1].text() as signs);
   }
 
-  let childrenArePresent:boolean = false;
+  let childrenArePresent: boolean = false;
   $('.board').children().get().forEach(child => {
     if (!child.children.length) childrenArePresent = true;
   });
-  if(childrenArePresent) return;
+  if (childrenArePresent) return;
   alertWinner('tie' as const);
 }
 
 function alertWinner(winner: signs | 'tie'): void {
+  endScreenEnabled = true;
   $('.ok').prop('disabled', false)
   $('.win-screen').fadeIn(fadeTime);
   $('.container').addClass('blur')
