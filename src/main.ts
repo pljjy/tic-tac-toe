@@ -16,7 +16,6 @@ $('.ok').on('click', function() {
 });
 
 $('.reset').on('click', resetFields)
-console.log('hii')
 
 $('.square').on('click', function() {
   if (endScreenEnabled) return;
