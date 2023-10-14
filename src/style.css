@@ -89,6 +89,7 @@ button{
   text-align: center;
   font-size: var(--local-size);
   line-height: var(--local-size);
+  user-select: none;
 }
 
 .hidden{
