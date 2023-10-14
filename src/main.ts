@@ -6,36 +6,24 @@ type signs = 'x' | 'o';
 var currentPlayer: signs = 'x';
 const fadeTime = 400;
 
-$('.x').on('click', function() {
-  currentPlayer = 'x';
-  if ($('.o').hasClass('pressed')) {
-    $('.o').removeClass('pressed');
-    $(this).addClass('pressed');
-  }
-});
-
-$('.o').on('click', function() {
-  currentPlayer = 'o';
-  if ($('.x').hasClass('pressed')) {
-    $('.x').removeClass('pressed');
-    $(this).addClass('pressed');
-  }
-});
 
 $('.ok').on('click', function() {
   $(this).prop('disabled', true);
-  reset();
+  resetFields();
   $('.win-screen').fadeOut(fadeTime);
   $('.container').removeClass('blur')
 });
 
-$('.reset').on('click', reset)
+$('.reset').on('click', resetFields)
 
 
 $('.square').on('click', function() {
   if ($(this).children().length > 0) return;
   $(this).html(`<span class='${currentPlayer}-field'>${currentPlayer}</span>`);
   checkWinner();
+  if(currentPlayer === 'x') currentPlayer = 'o' as signs;
+  else currentPlayer = 'x' as signs;
+  $('.turn > span').text(currentPlayer as string);
 });
 
 function getFields(){
@@ -94,7 +82,7 @@ function alertWinner(winner: signs | 'tie'): void {
   }
 }
 
-function reset(): void {
+function resetFields(): void {
   const fields = getFields();
 
   fields.forEach(line => {
@@ -102,6 +90,26 @@ function reset(): void {
       field.parent().empty();
     });
   });
+  currentPlayer = 'x' as signs;
+  $('.turn > span').text(currentPlayer as string);
 }
 
+
+
+// UNCOMMENT IF you implement AI 
+// $('.x').on('click', function() {
+//   currentPlayer = 'x';
+//   if ($('.o').hasClass('pressed')) {
+//     $('.o').removeClass('pressed');
+//     $(this).addClass('pressed');
+//   }
+// });
+
+// $('.o').on('click', function() {
+//   currentPlayer = 'o';
+//   if ($('.x').hasClass('pressed')) {
+//     $('.x').removeClass('pressed');
+//     $(this).addClass('pressed');
+//   }
+// });
 
